@@ -31,7 +31,8 @@ function Plots(id) {
         let OTUvalues = filtered.sample_values.slice(0, 10).reverse();
         let OTUids = filtered.otu_ids.slice(0, 10).reverse();
         let labels = filtered.otu_labels.slice(0, 10).reverse();
-
+        let metadata = data.metadata 
+        let filteredMetadata = metadata.filter(bacteriaInfo => bacteriaInfo.id == id)[0] 
         
         let barTrace = {
             x: OTUvalues,
@@ -69,6 +70,7 @@ function Plots(id) {
         let gaugeTrace = {
             domain: { x: [0, 5], y: [0, 1] },
             // value: identifier.wfreq,
+            value: filteredMetadata.wfreq, 
             type: "indicator",
             ids: ['0-1', '1-2', '2-3', '3-4', '5-6', '6-7', '7-8', '8-9'],
             gauge: {
